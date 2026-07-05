@@ -9,7 +9,7 @@ def test_get_comments_for_post(url, api_session, post_id):
     assert len(data) > 0, f"No comments for postId {post_id}"
     for comment in data:
         assert "email" in comment, f"Missing email in comment for postId {post_id}"
-
+ 
 def test_get_single_comment(url, api_session):
     response = api_session.get(f"{url}/comments/1", timeout=6)
     data = response.json()

@@ -8,6 +8,7 @@ def test_get_posts_by_user(url, api_session, user_id):
     assert isinstance(data, list), f"Response should be a list for userId {user_id}"
     assert len(data) > 0, f"No posts found for userId {user_id}"
 
+@pytest.mark.smoke
 def test_get_all_posts(url, api_session):
     response = api_session.get(f"{url}/posts", timeout=6)
     data = response.json()
@@ -15,6 +16,7 @@ def test_get_all_posts(url, api_session):
     assert isinstance(data, list), "Response should be a list"
     assert len(data) == 100, "Expected exactly 100 posts"
 
+@pytest.mark.regression
 def test_create_and_verify_post(url, api_session):
     body = {"title": "test post", "body": "test body", "userId": 1}
     response = api_session.post(f"{url}/posts", json=body, timeout=6)

@@ -1,6 +1,7 @@
 import pytest
 import requests
 
+@pytest.mark.smoke
 def test_get_all_users(url , api_session):
     response = api_session.get(f"{url}/users" ,timeout=6 )
     data = response.json()
